@@ -1,4 +1,5 @@
 import * as React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import MuiDrawer from "@mui/material/Drawer";
@@ -20,8 +21,10 @@ import { mainListItems, secondaryListItems } from "./listItems";
 import { Button } from "@mui/material";
 import HeaderComponent from "./components/Layout/Header";
 import DrawerComponent from "./components/Layout/Drawer";
-
-const drawerWidth: number = 240;
+import AboutUs from "./views/AboutUs";
+import Home from "./views/Home";
+import Profile from "./views/Profile";
+import Notification from "./views/Notification";
 
 const mdTheme = createTheme();
 
@@ -33,32 +36,34 @@ function DashboardContent() {
 
   return (
     <ThemeProvider theme={mdTheme}>
-      <Box sx={{ display: "flex" }}>
-        <CssBaseline />
-        <HeaderComponent toggleDrawer={toggleDrawer} open={open} />
-        <DrawerComponent toggleDrawer={toggleDrawer} open={open} />
-        <Box
-          component="main"
-          sx={{
-            backgroundColor: (theme) =>
-              theme.palette.mode === "light"
-                ? theme.palette.grey[100]
-                : theme.palette.grey[900],
-            flexGrow: 1,
-            overflow: "auto",
-            height: "100vh",
-          }}
-        >
-          <Toolbar />
-          <Container sx={{ mt: 2, mb: 2 }}>
-            <Grid container spacing={1}>
-              {/* Chart */}
-              <h3>Welcome!</h3>
-              {/* <Dashboard /> */}
-            </Grid>
-          </Container>
+      <BrowserRouter>
+        {" "}
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
+          <HeaderComponent toggleDrawer={toggleDrawer} open={open} />
+          <DrawerComponent toggleDrawer={toggleDrawer} open={open} />
+          <Box
+            component="main"
+            sx={{
+              backgroundColor: (theme) =>
+                theme.palette.mode === "light"
+                  ? theme.palette.grey[100]
+                  : theme.palette.grey[900],
+              flexGrow: 1,
+              overflow: "auto",
+              height: "100vh",
+            }}
+          >
+            <Toolbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutUs />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/notification" element={<Notification />} />
+            </Routes>
+          </Box>
         </Box>
-      </Box>
+      </BrowserRouter>
     </ThemeProvider>
   );
 }

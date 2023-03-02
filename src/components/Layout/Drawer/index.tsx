@@ -39,7 +39,6 @@ interface dataFormProps {
   open?: boolean;
 }
 const DrawerComponent = ({ toggleDrawer, open }: dataFormProps) => {
-  console.log("open DrawerComponent ", open);
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar

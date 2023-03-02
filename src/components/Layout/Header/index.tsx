@@ -7,6 +7,7 @@ import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 const drawerWidth: number = 240;
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
@@ -33,7 +34,6 @@ interface dataFormProps {
   open?: boolean;
 }
 const HeaderComponent = ({ toggleDrawer, open }: dataFormProps) => {
-  const navItems = ["Notifications", "Profile"];
   console.log("open HeaderComponent", open);
   return (
     <AppBar position="absolute" open={open}>
@@ -64,11 +64,16 @@ const HeaderComponent = ({ toggleDrawer, open }: dataFormProps) => {
           Audience Creator Digital Master Management
         </Typography>
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
-          {navItems.map((item) => (
-            <Button key={item} sx={{ color: "#fff" }}>
-              {item}
+          <Link to="/notification" className="text-link">
+            <Button key={"notification"} sx={{ color: "#fff" }}>
+              <span>Notification</span>
             </Button>
-          ))}
+          </Link>
+          <Link to="/profile" className="text-link">
+            <Button key={"profile"} sx={{ color: "#fff" }}>
+              <span>Profile</span>
+            </Button>
+          </Link>
         </Box>
       </Toolbar>
     </AppBar>
