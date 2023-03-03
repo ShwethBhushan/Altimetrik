@@ -4,20 +4,24 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import Divider from "@mui/material/Divider";
-import { mainListItems, secondaryListItems } from "../../../listItems";
+import { LinkGroups } from "../../../components/Layout/Drawer/LinkGroup/linkGroup";
 import List from "@mui/material/List";
 import { styled } from "@mui/material/styles";
+import { Routes } from "react-router-dom";
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
   "& .MuiDrawer-paper": {
     position: "relative",
     whiteSpace: "nowrap",
-    width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    "& .MuiList-root ": {
+      paddingTop: "0",
+      paddingBottom: "8",
+    },
     boxSizing: "border-box",
     ...(!open && {
       overflowX: "hidden",
@@ -38,7 +42,24 @@ interface dataFormProps {
   toggleDrawer: () => void;
   open?: boolean;
 }
+
+
 const DrawerComponent = ({ toggleDrawer, open }: dataFormProps) => {
+  const menuItems = [
+    {
+      className: "",
+      childrenLinks: [{
+        link: "",
+        name: "Audience Dashboard"
+      },{
+        link: "",
+        name: " Import Audience Segemnt"
+      }],
+      headerLink: "",
+      header:"Audience Segment Management",
+      glyph:""
+    }
+  ]
   return (
     <Drawer variant="permanent" open={open}>
       <Toolbar
@@ -49,15 +70,17 @@ const DrawerComponent = ({ toggleDrawer, open }: dataFormProps) => {
           px: [1],
         }}
       >
-        <IconButton onClick={toggleDrawer}>
+        {/* <IconButton onClick={toggleDrawer}>
           <ChevronLeftIcon />
-        </IconButton>
+        </IconButton> */}
       </Toolbar>
       <Divider />
       <List component="nav">
-        {mainListItems}
-        <Divider sx={{ my: 1 }} />
-        {secondaryListItems}
+      {     
+        menuItems.map(item => 
+        <LinkGroups {...item}/>
+         )
+      }
       </List>
     </Drawer>
   );

@@ -21,8 +21,7 @@ const AppBar = styled(MuiAppBar, {
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
+   
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen,
@@ -61,14 +60,9 @@ const HeaderComponent = ({ toggleDrawer, open }: dataFormProps) => {
           noWrap
           sx={{ flexGrow: 1 }}
         >
-          Audience Creator Digital Master Management
+          Audience Creation Digital Master Management
         </Typography>
         <Box sx={{ display: { xs: "none", sm: "block" } }}>
-          <Link to="/notification" className="text-link">
-            <Button key={"notification"} sx={{ color: "#fff" }}>
-              <span>Notification</span>
-            </Button>
-          </Link>
           <Link to="/profile" className="text-link">
             <Button key={"profile"} sx={{ color: "#fff" }}>
               <span>Profile</span>
